@@ -1,0 +1,68 @@
+<div class="movie-description" [ngStyle]="{'background-image': 'url('+ imageUrl + ')'}">
+    <div class="movie">
+        <div class="container content-description">
+            <div class="title">{{movie.title}}</div>
+            <div class="release_date">{{movie.release_date | date: 'dd/MM/yyyy'}}</div>
+            <div class="vote">
+                <fa-icon class="icon mg-right" [icon]="faStar"></fa-icon>
+                <fa-icon class="icon mg-right" [icon]="faStar"></fa-icon>
+                <fa-icon class="icon mg-right" [icon]="faStar"></fa-icon>
+                <fa-icon class="icon mg-right" [icon]="faStar"></fa-icon>
+                <fa-icon class="icon mg-right" [icon]="faStar"></fa-icon>
+
+                <div class="mg-left">
+                    {{movie.vote_average}} / <span class="total">10</span>
+                </div>
+                <div class="">
+                    <span class="mg-right" *ngFor="let genre of movie.genres">{{genre.name}}</span>
+                </div>
+            </div>
+            <div class="description">{{movie.overview}}</div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <a target="_blank" class="trailer" href="https://www.youtube.com/watch?v={{video.key}}">Trailer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="movie-extra">
+    <div class="container movie-details">
+        <div >
+            <div class="subtitle">
+                Compañias de producción
+            </div>
+            <div class="row">
+                <div class="col-md-2 company-content" *ngFor="let company of movie.production_companies">
+                    <img class="company-image" [src]="company|productionCompany" />
+                    <div class="company-name">{{company.name}}
+                    </div>
+                </div>
+                <div *ngIf="movie.production_companies?.length == 0"> 
+                    <div class="col-md-12 no-elements">
+                        No se encontraron compañías registradas.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="company-items">
+                <div class="subtitle">
+                    Paises de producción
+                </div>
+                <div class="row">
+                    <div class="col-md-2 company-content" *ngFor="let company of movie.production_countries"> 
+                        <div class="company-name">{{company.name}}
+                        </div>
+                    </div>
+                    <div *ngIf="movie.production_countries?.length == 0"> 
+                        <div class="col-md-12 no-elements">
+                            No se encontraron paises registrados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

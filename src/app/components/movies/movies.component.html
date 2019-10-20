@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="search"> 
+        <div class="row">
+            <div class="col-md-6">
+                  <p class="head">Listado de Videos</p>
+            </div>
+            <div class="col-md-6"> 
+                <div class="form-group mx-auto">
+                    <div class="input-group"> 
+                        <input #text [(ngModel)]="text_search" type="text" class="form-control text-search"
+                            (keyup.enter)="search()" placeholder="Buscar..." />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-results" infiniteScroll [infiniteScrollDistance]=1 [infiniteScrollThrottle]="20" (scrolled)="onScroll()">
+    
+        <app-cards [movies]="movies"></app-cards>
+        <div class="row pb-5">
+            <div class="col-md-12 p-5">
+                <ngx-spinner bdOpacity=0.9 bdColor="" size="default" color="#de1212" type="ball-pulse-sync"
+                    [fullScreen]="false">
+                </ngx-spinner>
+            </div>
+        </div>
+    </div>
+</div>

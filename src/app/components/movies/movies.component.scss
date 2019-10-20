@@ -1,0 +1,43 @@
+.head{
+    font-size: 40px;
+}
+  
+.search{
+    display: block;
+    margin-top:20px;
+}
+
+.search-results{
+    padding-top:20px;
+}
+
+.input-group-text{
+    border-radius: 15px;  
+    border:1.5px solid #000;
+}
+
+.input-group-prepend {
+    border:0;
+}
+.text-search{
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 15px;
+    border:1.5px solid #000;
+}
+
+input    {
+    background: transparent;
+}
+input:focus{
+    background: transparent;
+}
+input.empty {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+.icon{
+    font-size: 10px;
+}
