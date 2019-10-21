@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+ 
 import { AppComponent } from './app.component';
 import {HttpClientModule, HttpClientJsonpModule} from '@angular/common/http'
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -30,8 +29,7 @@ import { ProductionCompanyPipe } from './pipes/production-company.pipe';
     ProductionCompanyPipe 
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule, 
     HttpClientModule,
     HttpClientJsonpModule,
     InfiniteScrollModule,
