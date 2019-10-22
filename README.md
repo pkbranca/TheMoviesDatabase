@@ -3,6 +3,7 @@
 ```
 git clone https://github.com/pkbranca/TheMoviesDatabase.git
 cd TheMoviesDatabase
+npx npm-force-resolutions
 npm install
 ng serve
 ```
