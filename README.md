@@ -1,3 +1,12 @@
+# Installation
+
+```
+git clone https://github.com/pkbranca/TheMoviesDatabase.git
+cd TheMoviesDatabase
+npx npm-force-resolutions
+npm install
+ng serve
+```
 # TMDB
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.

@@ -14,19 +14,19 @@ export class MovieService {
 
 
   getMovies(query:string){
-    const url = `https://api.themoviedb.org/3${query}?api_key=${this.apikey}&language=es&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
+    const url = `${this.urlMovie}${query}?api_key=${this.apikey}&language=es&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
     return this.http.jsonp(url,"");
   }
 
   
 
   getMoviesPagination(query:string,page:string){
-    const url = `https://api.themoviedb.org/3${query}?api_key=${this.apikey}&page=${page}&language=es&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
+    const url = `${this.urlMovie}${query}?api_key=${this.apikey}&page=${page}&language=es&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
     return this.http.jsonp(url,"");
   }
 
   getMoviesBySearchPagination(text:string, query:string,page:string){
-    const url = `https://api.themoviedb.org/3${query}?api_key=${this.apikey}&query=${text}&page=${page}&language=es&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
+    const url = `${this.urlMovie}${query}?api_key=${this.apikey}&query=${text}&page=${page}&language=es&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
     return this.http.jsonp(url,"");
   }
 
@@ -45,7 +45,7 @@ export class MovieService {
   }
 
    getAllVideos(id:string){
-    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${this.apikey}&language=en-US&callback=JSONP_CALLBACK`;
+    const url = `${this.urlMovie}${id}/videos?api_key=${this.apikey}&language=en-US&callback=JSONP_CALLBACK`;
     return this.http.jsonp(url,"");
   }
 
