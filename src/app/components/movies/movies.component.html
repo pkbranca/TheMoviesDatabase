@@ -14,8 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="search-results" infiniteScroll [infiniteScrollDistance]=1 [infiniteScrollThrottle]="20" (scrolled)="onScroll()">
-    
+    <div class="search-results" infiniteScroll  [infiniteScrollDistance]="0.2" [infiniteScrollThrottle]="20" (scrolled)="onScroll()"> 
         <app-cards [movies]="movies"></app-cards>
         <div class="row pb-5">
             <div class="col-md-12 p-5">

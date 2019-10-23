@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy, ComponentFactoryResolver } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
@@ -15,6 +15,8 @@ export class  MoviesComponent implements OnInit, OnDestroy {
 
   faSearch = faSearch; 
   movies: Movie[] = []; 
+  subscr: any[] = [];
+  moviestoshow: any[] = [];
   page: any = 0;
   total_pages: any = 1;
   notscrolly: boolean = true;
@@ -88,12 +90,14 @@ export class  MoviesComponent implements OnInit, OnDestroy {
       this.movieService.getMovieSearch(text, this.page).subscribe((data: any) => {
 
         this.total_pages = data.total_pages;
-        
-        this.page = data.page;  
-        data.results.forEach((movie, index) => {          
-          this.movies.push(movie);          
+        this.subscr = data.results;  
+        this.page = data.page;   
+       this.movies.concat(data.results);
+
       });
-      });
+       /*this.subscr.forEach((movie, index) => {          
+        this.movies.push(movie);          
+       }); */
     }
     else {
       this.spinner.hide();
@@ -105,12 +109,12 @@ export class  MoviesComponent implements OnInit, OnDestroy {
       this.spinner.show();
       setTimeout(() => {
         this.loadNextMovies();
-      }, 1000);
+      },1000);
       observer.complete();
     }).toPromise();
 
     moviesObservable.then(() => {
-      this.notscrolly = true;
+     // this.notscrolly = true;
     });
   }
 
@@ -119,11 +123,20 @@ export class  MoviesComponent implements OnInit, OnDestroy {
     if (this.page + 1 <= this.total_pages) {
       this.page = this.page + 1; 
       this.movieService.getAllMovies(this.page).subscribe((data: any) => { 
-        this.total_pages = data.total_pages;  
+        this.total_pages = data.total_pages; /* 
         data.results.forEach((movie, index) => {          
             this.movies.push(movie);          
-        });
-        console.log(this.movies);
+        });*/
+        
+        this.subscr = data.results;
+        //this.moviestoshow = this.moviestoshow.concat(this.subscr);
+        //this.movies = this.movies.concat(data.results);
+        this.subscr.forEach((movie, index) => {          
+          this.movies.push(movie);
+            
+         }); 
+         console.log(this.movies);
+        this.notscrolly =true;
         this.page = data.page;  
       });
     }
@@ -135,16 +148,18 @@ export class  MoviesComponent implements OnInit, OnDestroy {
 
   //Obtener más películas cada vez que haga scroll
   onScroll() { 
-
+    console.log("scroll");
     if (this.notscrolly) {
       this.notscrolly = false;
-
+      console.log("notscrolly true");
       if (this.text_search == "") {
         this.getNextMovies();
       }
       else {
         this.scrollSearchMovies();
       }
+    }else{
+      console.log("notscrolly false");
     }
   }
 

@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-6 top-buffer card-content" (click)="MovieDetail(movie)"
-        *ngFor="let movie of movies">
+        *ngFor="let movie of movies;trackBy: trackByFn">
         <div class="img-content">
-            <img (load)="dosomething(movie)" [src]="movie|movieImage" alt="movie.title" class="card-movie" />
+            <img [src]="movie|movieImage" alt="movie.title" class="card-movie" />
         </div>
         <div class="card-description">
             <p>{{movie.title}}</p>
